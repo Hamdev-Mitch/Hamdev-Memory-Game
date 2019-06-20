@@ -14,18 +14,18 @@
 // Dynamically Generate Cards
 // ARRAY OF CARD ICONS - Two of Each, to be matched.
 // Store cards in array
-const icons = [
-  "fa fa-twitter-square", "fa fa-twitter-square",
-  "fa fa-facebook-square", "fa fa-facebook-square",
-  "fa fa-instagram", "fa fa-instagram",
-  "fa fa-tumblr-square", "fa fa-tumblr-square",
-  "fa fa-linkedin", "fa fa-linkedin",
-  "fa fa-youtube-square", "fa fa-youtube-square",
-  "fa fa-leaf", "fa fa-leaf",
-  "fa fa-bicycle", "fa fa-bicycle",
-  "fa fa-diamond", "fa fa-diamond",
-  "fa fa-bomb", "fa fa-bomb",
-  "fa fa-leaf", "fa fa-leaf",
+const cards = [
+  "fa-twitter-square", "fa-twitter-square",
+  "fa-facebook-square", "fa-facebook-square",
+  "fa-instagram", "fa-instagram",
+  "fa-tumblr-square", "fa-tumblr-square",
+  "fa-linkedin", "fa-linkedin",
+  "fa-youtube-square", "fa-youtube-square",
+  "fa-leaf", "fa-leaf",
+  "fa-bicycle", "fa-bicycle",
+  "fa-diamond", "fa-diamond",
+  "fa-bomb", "fa-bomb",
+  "fa-leaf", "fa-leaf",
 ]
 //add function generate Cards
   //add attribute data-card="${card}"
@@ -36,6 +36,10 @@ const icons = [
 
 //Create Card template
 
+// Declare Flipcard Function
+function flipCard() {
+
+}
 
 
 //EVENT LISTENER TO CARD CLASS (To Allow Cards to Flip)
@@ -43,6 +47,11 @@ const icons = [
   //GRAB ALL Cards
   //loop through
   //add click event LISTENER
+
+const cards = document.querySelectorAll('.memory-card');
+
+card.forEach(card => card addEventListener ('click', flipCard));
+
     //pass event listener into it
     //check it works with console.log
     //add class to the card when clicked (open, show)
@@ -90,11 +99,21 @@ function shuffle(array) {
     return array;
 }
 
+
+
 // add score board
+gradeSpan.innerText = grade
+
+// add number of moves board
+moveText.innerText = moves;
 // moves = 0;
 // update moves moves += 1;
 // store move counter element in a variable
 // make move counter inner text = moves
+
+// set timer to display time
+timeText.innerText = watch.getTimeString();
+
 
 
 /*
@@ -107,3 +126,14 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
+
+// Boolean to know if the game is over
+
+let isGameOver = false;
+let didGameStart = false;
+
+let matches = [];
+let lastFlipped = null
+let pause = false;

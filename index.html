@@ -5,10 +5,10 @@
     <title>HAMDEV MEMORY</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:400,900&display=swap">
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body background ="img/starrySky.jpg">
 
     <div class="container">
         <header>
@@ -23,8 +23,7 @@
         	</ul>
 
         	<span class="moves">3</span> Moves
-
-            <div class="restart">
+          <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
@@ -81,6 +80,23 @@
         </ul>
     </div>
 
+<div id="game_modal" class="modal">
+  <div class="modal-content">
+    <h1>Congratulations!</h1>
+    <h6>Game Results</h6>
+    <p><strong>TIME:</strong> <span id="time-results"></span></p>
+    <p><strong>MOVES:</strong> <span id="moves-results"></p>
+    <p><strong>GRADE:</strong> <span id="grade-results"></p>
+  </div>
+  <div class="modal-footer">
+    <p><em>Play again to see if you can beat your score.</em></p>
+  </div>
+</div>
+
+
+
+<p class="github-link text-center"><a title="Github Link" href="https://github.com/Hamdev-Mitch/Hamdev-Memory-Game.git">Find it <b>HERE</b> on Github</a></p>
+<h6 class="text-center"><a href="hamdev.net">hamdev.net</a></h6>
     <script src="js/app.js"></script>
 </body>
 </html>
