@@ -16,16 +16,7 @@ body {
     padding: 0;
 }
 
-body {
-    font-family: 'Coda', cursive;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+/* Styling for the  fonts  */
 
 h1 {
     font-family: 'Orbitron', sans-serif;
@@ -45,33 +36,62 @@ h6 {
   font-size: 1rem;
 }
 
-.text-center{
-  text-align: center;
+/* Styling for the Deck of Cards and the Cards */
+
+.deckOfCards {
+  background: linear-gradient(160deg, #3f4652 0%, #d55931 100%);;
+  width: 660px;
+  min-height: 680px;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 3em;
 }
-/*
- * Styles for the deck of cards
- */
 
- /* Burnt Orange - #d55931
-Dark Blue - #222831
-Ash White - #eeeeee
-Blue grey - #3f4652 */
+.memory-card {
+  width: calc(25% - 10px);
+  height: calc(25% - 10px);
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .6s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
 
-
-.deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #3f4652 0%, #d55931 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+.container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin: 0 0 3em;
+    flex-direction: column;
 }
 
+/* Styling for cards once active or flipped */
+
+.memory-card:active {
+  transform: scale(0.95);
+  transition: transform .3s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+/* Styling for cards once matched */
+
+.memory-card.match {
+    cursor: default;
+    background: #eeeeee;
+    font-size: 33px;
+
+/* Change styling so that the back face appears */
+
+/* Something has happened here, but I can't figure it out. */
 .deck .card {
     height: 125px;
     width: 125px;
@@ -92,15 +112,6 @@ Blue grey - #3f4652 */
     cursor: default;
 }
 
-.deck .card.show {
-    font-size: 33px;
-}
-
-.deck .card.match {
-    cursor: default;
-    background: #eeeeee;
-    font-size: 33px;
-}
 
 /*
  * Styles for the Score Panel
@@ -134,7 +145,8 @@ Blue grey - #3f4652 */
 }
 
 .modal {
-  box-sizing: border-box; width: 800px; align: center;
+  align-content: center;
+  box-sizing: border-box; width: 800px;
   background: #3f4652;
   text-align: center;
   color: #eeeeee;

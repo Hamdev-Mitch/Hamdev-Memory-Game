@@ -15,17 +15,7 @@
 // ARRAY OF CARD ICONS - Two of Each, to be matched.
 // Store cards in array
 const cards = [
-  "fa-twitter-square", "fa-twitter-square",
-  "fa-facebook-square", "fa-facebook-square",
-  "fa-instagram", "fa-instagram",
-  "fa-tumblr-square", "fa-tumblr-square",
-  "fa-linkedin", "fa-linkedin",
-  "fa-youtube-square", "fa-youtube-square",
-  "fa-leaf", "fa-leaf",
-  "fa-bicycle", "fa-bicycle",
-  "fa-diamond", "fa-diamond",
-  "fa-bomb", "fa-bomb",
-  "fa-leaf", "fa-leaf",
+
 ]
 //add function generate Cards
   //add attribute data-card="${card}"
