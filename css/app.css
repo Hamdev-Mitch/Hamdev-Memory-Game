@@ -1,78 +1,106 @@
 html {
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Styling for the  fonts  */
+/* FONT STYLING */
 
 h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-    font-size: 400%;
-    color: #d55931;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  font-size: 400%;
+  color: #d55931;
 }
 
-a {
-  color: #eeeeee;
-}
-
-h6 {
+h6, p {
   color: #eeeeee;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.5rem;
-  font-size: 1rem;
 }
 
-/* Styling for the Deck of Cards and the Cards */
-
-.deckOfCards {
-  background: linear-gradient(160deg, #3f4652 0%, #d55931 100%);;
-  width: 660px;
-  min-height: 680px;
-  display: flex;
-  flex-wrap: wrap;
-  perspective: 1000px;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 0 3em;
+a {
+  text-align: center;
+  color: #eeeeee;
+  font-size: 3rem;
 }
+
+
+/* SCORE PANEL */
+
+.score-panel {
+  margin-bottom: 10px;
+  color: #eeeeee;
+  font-size: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.score-panel .stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  color: #d55931;
+}
+
+.score-panel .stars li {
+  list-style: none;
+  display: inline-block;
+}
+
+.score-panel .restart {
+  float: right;
+  cursor: pointer;
+}
+
+/* DECK */
+
+.deck {
+  overflow: auto;
+	background: linear-gradient(160deg, #eee 0%, #d55931 100%);
+	padding: 0.5rem;
+  border-radius: 15px;
+}
+
+main, header[role=banner]{
+  text-align: center;
+}
+
+.deck-container {
+  	display: inline-block;
+    width: 610px;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+/* MEMORY CARD */
 
 .memory-card {
-  width: calc(25% - 10px);
-  height: calc(25% - 10px);
-  margin: 5px;
-  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 90px;
+  padding: 1rem;
+  font-size: 4em;
+  background: #3f4652;
+  margin: 0.5rem;
+  border-radius: 10px;
+  float: left;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .6s;
-  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  /* &:nth-of-type(4n+1)
+    clear: left; */
 }
 
 /* Styling for cards once active or flipped */
-
 .memory-card:active {
   transform: scale(0.95);
   transition: transform .3s;
@@ -83,71 +111,29 @@ h6 {
 }
 
 /* Styling for cards once matched */
-
 .memory-card.match {
-    cursor: default;
-    background: #eeeeee;
-    font-size: 33px;
-
-/* Change styling so that the back face appears */
-
-/* Something has happened here, but I can't figure it out. */
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #222831;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  cursor: default;
+  background: #eeeeee;
+  font-size: 33px;
 }
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #d55931;
-    cursor: default;
-}
+.deck .memory-card.open {
+  transform: rotateY(180);
+  background: #d55931;
+  cursor: default;
+  }
 
+  .text-center {
+    text-align: center;
+  }
 
-/*
- * Styles for the Score Panel
- */
+/* GAME MODAL */
 
-.score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
-    color: #eeeeee;
-    font-size: 1.5rem;
-    font-family: 'Orbitron', sans-serif;
-}
-
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
-    color: #d55931;
-}
-
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
-
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-}
-
-.modal {
-  align-content: center;
-  box-sizing: border-box; width: 800px;
-  background: #3f4652;
+#game_modal {
+  box-sizing: border-box;
+  background: linear-gradient(160deg, #eeeeee 5%, #d55931 12%, #222831 18%, #3f4652 50%, #222831 82%, #d55931 88%,  #eeeeee 95%);
+  border-radius: 0 30px;
+  width: 800px;
   text-align: center;
   color: #eeeeee;
   font-family: 'Orbitron', sans-serif;
@@ -157,6 +143,7 @@ h6 {
 }
 
 .github-link {
+  text-align: center;
   color: #eeeeee;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.8rem;

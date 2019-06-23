@@ -1,111 +1,68 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>HAMDEV MEMORY</title>
-    <meta name="description" content="">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:400,900&display=swap">
-    <link rel="stylesheet" href="css/app.css">
+  <meta charset="utf-8">
+  <title>HAMDEV MEMORY</title>
+  <meta name="description" content="">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron:400,900&display=swap">
+  <link rel="stylesheet" href="css/app.css">
 </head>
-<body background ="img/starrySky.jpg">
 
-    <div class="container">
-        <header>
-            <h1>HAMDEV MEMORY</h1>
-        </header>
+<body background="img/starrySky.jpg">
 
-<!-- Score Panel with 5 Stars -->
-        <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-        	</ul>
+  <header role="banner">
+    <header>
+      <h1>HAMDEV MEMORY</h1>
+      <p class="game-description">Put your memory to the test!</p>
+    </header>
 
-        	<span class="moves">3</span> Moves
-          <div class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
-        </section>
+    <!-- Score Panel with 5 Stars -->
+    <section class="score-panel text-center" aria-live="polite">
+      <ul class="stars">
+        <li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>
+      </ul>
 
-        <!-- Make deck of cards and populate with front and back faces -->
-        <section class="deckOfCards">
-          <div class="memory-card"
-            <img class="front-face" src="img/nerdEmoji.png" alt="Nerd Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-          <div class="memory-card"
-            <img class="front-face" src="img/nerdEmoji.png" alt="Nerd Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
+      <span class="moves text-center">3</span> Moves
+      <div class="restart">
+        <i class="fa fa-repeat"></i>
+      </div>
+    </section>
+  </header>
 
-          <div class="memory-card"
-            <img class="front-face" src="img/coolEmoji.png" alt="Cool Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-          <div class="memory-card"
-            <img class="front-face" src="img/coolEmoji.png" alt="Cool Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-
-          <div class="memory-card"
-            <img class="front-face" src="img/kissEmoji.png" alt="Kiss Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-          <div class="memory-card"
-            <img class="front-face" src="img/kissEmoji.png" alt="Kiss Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-
-          <div class="memory-card"
-            <img class="front-face" src="img/loveEmoji.png" alt="Love Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-          <div class="memory-card"
-            <img class="front-face" src="img/loveEmoji.png" alt="Love Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-
-          <div class="memory-card"
-            <img class="front-face" src="img/tearsJoyEmoji.webp" alt="Tears of Joy Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-          <div class="memory-card"
-            <img class="front-face" src="img/tearsJoyEmoji.webp" alt="Tears of Joy Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-
-          <div class="memory-card"
-            <img class="front-face" src="img/tongueEmoji.png" alt="Poke Tongue Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-          <div class="memory-card"
-            <img class="front-face" src="img/tongueEmoji.png" alt="Poke Tongue Emoji" />
-            <img class="back-face" src="img/hamdevBadge_dark.png" alt="Hamdev Badge" />
-          </div>
-      </section>
+  <!-- Main Game  -->
+  <main role="main">
+    <div class="deck-container">
+      <ul class="deck">
+      </ul>
     </div>
+  </main>
 
-<!-- Make a box that appears when the player completes the game -->
-<div id="game_modal" class="modal">
-  <div class="modal-content">
-    <h1>Congratulations!</h1>
-    <h6>Game Results</h6>
-    <p><strong>TIME:</strong> <span id="time-results"></span></p>
-    <p><strong>MOVES:</strong> <span id="moves-results"></p>
-    <p><strong>GRADE:</strong> <span id="grade-results"></p>
+  <!-- Make a box that appears when the player completes the game -->
+  <div id="game_modal" class="modal">
+    <div class="modal-content text-center">
+      <h1>Congratulations!</h1>
+      <h6>Game Results</h6>
+      <p><strong>TIME:</strong> <span id="time-results"></span></p>
+      <p><strong>MOVES:</strong> <span id="moves-results"></p>
+      <p><strong>GRADE:</strong> <span id="grade-results"></p>
+    </div>
+    <div class="modal-footer text-center">
+      <p><em>Play again to see if you can beat your score.</em></p>
+    </div>
   </div>
-  <div class="modal-footer">
-    <p><em>Play again to see if you can beat your score.</em></p>
-  </div>
-</div>
 
-<!-- Link to github and Hamdev Website  -->
-<p class="github-link text-center"><a title="Github Link" href="https://github.com/Hamdev-Mitch/Hamdev-Memory-Game.git">Find it <b>HERE</b> on Github</a></p>
-<h6 class="text-center"><a href="hamdev.net">hamdev.net</a></h6>
-    <script src="js/app.js"></script>
+  <!-- Link to github and Hamdev Website  -->
+  <p class="github-link text-center"><a title="Github Link" href="https://github.com/Hamdev-Mitch/Hamdev-Memory-Game.git">Find it <b>HERE</b> on Github</a></p>
+  <h6 class="text-center"><a href="hamdev.net">hamdev.net</a></h6>
+  </div>
+
+  <script src="js/app2.js"></script>
 </body>
+
 </html>
