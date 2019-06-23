@@ -1,78 +1,36 @@
-/*
- * Create a list that holds all of your cards
- */
+// initGAME();
 
- // function initGame() {
- //
- // write set interval function
- //clear timeout clear interval
- // }
- //
- // initGAME();
+const cards = document.querySelectorAll('.memory-card');
 
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
 
-// Dynamically Generate Cards
+// Create a list that holds all of your cards
+
+const cardTemplate = (emoji) =>  `<li class="memory-card"><span class="card-emoji">${emoji}</span></li>
+`;
+
 // ARRAY OF CARD ICONS - Two of Each, to be matched.
 // Store cards in array
-const cards = [
+const emojis = [ "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝", "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝",];
 
-]
-//add function generate Cards
-  //add attribute data-card="${card}"
-
-//create function that gives HTML for each cards
 //call cards with map, pass in each card, turn it into html string
-//add the html back in programmatically use innerHTML Property.
+const emojiHTML = emojis.map((emoji) => cardTemplate(emoji)).join("");
 
-//Create Card template
+const deck = document.querySelector(".deck");
+
+//add the html back in programmatically use innerHTML Property.
+deck.innerHTML = emojiHTML;
+
+
+// card.forEach(card => card addEventListener ('click', flipCard));
 
 // Declare Flipcard Function
 function flipCard() {
 
 }
 
-
-//EVENT LISTENER TO CARD CLASS (To Allow Cards to Flip)
-
-  //GRAB ALL Cards
-  //loop through
-  //add click event LISTENER
-
-const cards = document.querySelectorAll('.memory-card');
-
-card.forEach(card => card addEventListener ('click', flipCard));
-
-    //pass event listener into it
-    //check it works with console.log
-    //add class to the card when clicked (open, show)
-
-// Stop more than 2 cards showing at once
-  // create open card ARRAY
-  // push current card into that ARRAY
-  // if the open cards length is greater than two then hide the cards
-  // else open the car up
-
-  // hide cards after a period of time (setTimeout) delay 900
-  // card cardlist remove (open, show)
-
-  // disable clicking on the same card, using a boolean.
-
-//match Cards
-  //USE javascript get data attribute MDN Docs
-  // if they match add classlist.add('match');
-
-  // If they don't match, hide
-
-//MEMORY GAME LOGIC
-
-//MOVE COUNTER
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -90,6 +48,20 @@ function shuffle(array) {
 }
 
 
+/*
+ * set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
+
+
+
+
 
 // add score board
 gradeSpan.innerText = grade
@@ -103,19 +75,6 @@ moveText.innerText = moves;
 
 // set timer to display time
 timeText.innerText = watch.getTimeString();
-
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 
 
 
