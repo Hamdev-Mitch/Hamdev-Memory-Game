@@ -1,6 +1,6 @@
 // initGAME();
 
-const cards = document.querySelectorAll('.memory-card');
+
 
 let hasFlippedCard = false;
 let lockBoard = false;
@@ -13,7 +13,7 @@ const cardTemplate = (emoji) =>  `<li class="memory-card"><span class="card-emoj
 
 // ARRAY OF CARD ICONS - Two of Each, to be matched.
 // Store cards in array
-const emojis = [ "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝", "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝",];
+const emojis = [ "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝"];
 
 //call cards with map, pass in each card, turn it into html string
 const emojiHTML = emojis.map((emoji) => cardTemplate(emoji)).join("");
@@ -22,14 +22,20 @@ const deck = document.querySelector(".deck");
 
 //add the html back in programmatically use innerHTML Property.
 deck.innerHTML = emojiHTML;
-
-
-// card.forEach(card => card addEventListener ('click', flipCard));
-
-// Declare Flipcard Function
-function flipCard() {
-
+const cards = document.querySelectorAll('.memory-card');
+cards.forEach((card) => {
+  card.addEventListener("click",function(){
+    if (this.classList.contains("selected")) return;
+    this.classList.add("selected")
+  })
 }
+
+)
+
+// Hide the emoji
+
+
+// Replace the emoji with an ICON
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -44,45 +50,45 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
 
-    return array;
+// When the user clicks assign it to the selected cards
+
+// Check if one is already selected
+
+// Reveal the card
+
+
+
+
+
+
+// Flip First Card
+
+// card.forEach(card => card addEventListener ('click', flipCard));
+
+// Declare Flipcard Function
+function flipCard() {
+
+}
+
+// Flip Second Card
+
+// Check when a card is clicked
+  // .cards.a
+
+// add event addEventListener
+
+
+
+
+// Check for match
+function checkForMatch() {
+  let isMatch = firstCard.emojis === secondCard.emojis;
+
+  isMatch ? disableCards() : unflipCards();
 }
 
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 
 
-
-
-
-// add score board
-gradeSpan.innerText = grade
-
-// add number of moves board
-moveText.innerText = moves;
-// moves = 0;
-// update moves moves += 1;
-// store move counter element in a variable
-// make move counter inner text = moves
-
-// set timer to display time
-timeText.innerText = watch.getTimeString();
-
-
-
-// Boolean to know if the game is over
-
-let isGameOver = false;
-let didGameStart = false;
-
-let matches = [];
-let lastFlipped = null
-let pause = false;
+    return array;
+}
