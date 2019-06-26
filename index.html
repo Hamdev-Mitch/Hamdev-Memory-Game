@@ -44,23 +44,33 @@
   </main>
 
   <!-- Make a box that appears when the player completes the game -->
-  <div id="game_modal" class="modal">
+  <div id="alertModal" class="modal fade">
     <div class="modal-content text-center">
-      <h1>Congratulations!</h1>
-      <h6>Game Results</h6>
+      <div class="modal-header">
+        <h1>Congratulations!</h1>
+        <h6>Game Results</h6>
+      </div>
+      <div class="modal-body">
       <p><strong>TIME:</strong> <span id="time-results"></span></p>
       <p><strong>MOVES:</strong> <span id="moves-results"></p>
       <p><strong>GRADE:</strong> <span id="grade-results"></p>
     </div>
     <div class="modal-footer text-center">
       <p><em>Play again to see if you can beat your score.</em></p>
+      <button class="close" data-dismiss="modal">&times;</button>
+      <button class="btn btn-default" data-dismiss="modal">Close</button>
+      <br>
+      <br>
     </div>
   </div>
+</div>
 
   <!-- Link to github and Hamdev Website  -->
-  <p class="github-link text-center"><a title="Github Link" href="https://github.com/Hamdev-Mitch/Hamdev-Memory-Game.git">Find it <b>HERE</b> on Github</a></p>
-  <h6 class="text-center"><a href="hamdev.net">hamdev.net</a></h6>
+  <div class="footer">
+    <p class="github-link text-center"><a title="Github Link" href="https://github.com/Hamdev-Mitch/Hamdev-Memory-Game.git">Find it <b>HERE</b> on Github</a></p>
+    <h6 class="text-center"><a href="hamdev.net">hamdev.net</a></h6>
   </div>
+
 
   <script src="js/app.js"></script>
 </body>
