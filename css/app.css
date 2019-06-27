@@ -20,16 +20,24 @@ h1 {
   color: #d55931;
 }
 
+h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #eeeeee;
+}
+
 h6, p {
   color: #eeeeee;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.5rem;
 }
 
+
+
 a {
   text-align: center;
   color: #eeeeee;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 
@@ -43,8 +51,9 @@ a {
 }
 
 .score-panel .stars {
-  margin: 0;
-  padding: 0;
+  padding-right: 20px;
+  /* margin: 0;
+  padding: 0; */
   display: inline-block;
   margin: 0 5px 0 0;
   color: #d55931;
@@ -55,10 +64,20 @@ a {
   display: inline-block;
 }
 
+.score-panel .moves {
+  padding-right: 10px;
+}
+
+.score-panel .time {
+  padding-left: 30px;
+}
+
 .score-panel .restart {
-  float: right;
+  padding-left: 30px;
+  float:inherit;
   cursor: pointer;
 }
+
 
 /* DECK */
 

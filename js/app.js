@@ -1,11 +1,20 @@
-// initGAME();
+// ---------- START GAME ---------- //
 
+let moves = 0;
+let clockOff = true;
+let time = 0;
+let clockId;
+
+//---------- CARDS----------//
 // Create a list that holds all of your cards
 const cardTemplate = (emoji) =>  `<li class="memory-card"><span class="card-emoji">${emoji}</span></li>`;
 
 // Store cards in array
 const emojis = [ "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝"];
 
+//---------- CREATE + FILL DECK----------//
+
+// Create a deck to store the cards in
 const deck = document.querySelector(".deck");
 
 // Shuffle array once
@@ -36,6 +45,12 @@ cards.forEach((card) => {
 })
 
 
+// Check for match
+function checkForMatch() {
+  let isMatch = firstCard.emojis === secondCard.emojis;
+
+  isMatch ? disableCards() : unflipCards();
+}
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -53,16 +68,25 @@ function shuffle(array) {
 }
 
 
-// Check for match
-function checkForMatch() {
-  let isMatch = firstCard.emojis === secondCard.emojis;
+//---------- STARS----------//
+// Create a variable for the Stars
+const stars = document.querySelector("ul.stars li");
 
-  isMatch ? disableCards() : unflipCards();
+
+//---------- RESET----------//
+// Create a variable for the Reset Button
+const reset = document.querySelector(".fa-repeat");
+
+
+//---------- MOVES----------//
+function addMoves() {
+    moves++;
+    const movesText = document.querySelector('.moves');
+    movesText.innerHTML = moves;
 }
 
-
-
-
+//---------- END GAME----------//
+// function endGame () {}
 
 
 // Show Modal Box on Completion
