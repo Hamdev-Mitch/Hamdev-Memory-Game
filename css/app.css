@@ -159,6 +159,7 @@ main, header[role=banner]{
 /* GAME MODAL */
 
 #alertModal {
+  display: none;
   box-sizing: border-box;
   background: linear-gradient(160deg, #eeeeee 5%, #d55931 12%, #222831 18%, #3f4652 50%, #222831 82%, #d55931 88%,  #eeeeee 95%);
   border-radius: 0 30px;
