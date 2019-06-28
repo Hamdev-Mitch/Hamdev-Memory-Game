@@ -10,7 +10,7 @@ body {
   padding: 0;
 }
 
-/* FONT STYLING */
+/* ---------- FONT STYLING ---------- */
 
 h1 {
   font-family: 'Orbitron', sans-serif;
@@ -32,16 +32,13 @@ h6, p {
   font-size: 1.5rem;
 }
 
-
-
 a {
   text-align: center;
   color: #eeeeee;
   font-size: 2rem;
 }
 
-
-/* SCORE PANEL */
+/* ---------- SCORE PANEL ---------- */
 
 .score-panel {
   margin-bottom: 10px;
@@ -52,8 +49,6 @@ a {
 
 .score-panel .stars {
   padding-right: 20px;
-  /* margin: 0;
-  padding: 0; */
   display: inline-block;
   margin: 0 5px 0 0;
   color: #d55931;
@@ -78,8 +73,7 @@ a {
   cursor: pointer;
 }
 
-
-/* DECK */
+/* ---------- DECK ---------- */
 
 .deck {
   overflow: auto;
@@ -101,7 +95,7 @@ main, header[role=banner]{
 
 }
 
-/* MEMORY CARD */
+/* ---------- MEMORY CARD ---------- */
 
 .memory-card {
   display: inline-block;
@@ -117,31 +111,21 @@ main, header[role=banner]{
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .6s;
-  /* &:nth-of-type(4n+1)
-    clear: left; */
 }
 
-.memory-card:after {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  content: "";
-  background: black;
+/* ---------- Memory Card Styling ---------- */
 
-}
-
-/* Styling for cards once active or flipped */
+/*  button pressure effect */
 .memory-card:active {
   transform: scale(0.95);
   transition: transform .3s;
 }
 
-.memory-card.flip {
-  transform: rotateY(180deg);
+/* Styling for cards once matched */
+.match {
+  background: #eeeeee;
 }
 
-/* Styling for cards once matched */
 .memory-card.match {
   cursor: default;
   background: #eeeeee;
@@ -152,20 +136,11 @@ main, header[role=banner]{
   opacity: 0;
 }
 
-
-.memory-card.closed{
-}
-
-.memory-card.open{}
-
-
-
 .deck .memory-card.selected {
   transform: rotateY(180deg);
   background: #d55931;
   cursor: default;
   }
-
 
 .memory-card.selected .card-emoji {
       opacity: 1;

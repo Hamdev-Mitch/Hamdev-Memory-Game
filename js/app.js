@@ -1,16 +1,15 @@
-// ---------- START GAME ---------- //
+let selectedCard;
 
 let moves = 0;
 let clockOff = true;
-let time = 0;
-let clockId;
+let timer = 0;
 
 //---------- CARDS----------//
 // Create a list that holds all of your cards
-const cardTemplate = (emoji) =>  `<li class="memory-card"><span class="card-emoji">${emoji}</span></li>`;
+const cardTemplate = (emoji) => `<li class="memory-card"><span class="card-emoji">${emoji}</span></li>`;
 
 // Store cards in array
-const emojis = [ "😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝"];
+const emojis = ["😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝"];
 
 //---------- CREATE + FILL DECK----------//
 
@@ -28,7 +27,7 @@ console.log(emojiHTML);
 shuffle(emojis);
 
 // Pass in the array of emojis again
-emojiHTML = emojiHTML+emojis.map((emoji) => cardTemplate(emoji)).join("");
+emojiHTML = emojiHTML + emojis.map((emoji) => cardTemplate(emoji)).join("");
 console.log(emojiHTML);
 
 //add the html back in programmatically use innerHTML Property.
@@ -36,61 +35,173 @@ deck.innerHTML = emojiHTML;
 const cards = document.querySelectorAll('.memory-card');
 // Add event listener to each card
 cards.forEach((card) => {
-  card.addEventListener("click",function(){
+  card.addEventListener("click", function() {
     // Check if one is already selected
+    // remove this and add once
     if (this.classList.contains("selected")) return;
     // If not give it the selected class
     this.classList.add("selected")
   });
 })
 
+//---------- MATCH CARDS----------//
 
-// Check for match
-function checkForMatch() {
-  let isMatch = firstCard.emojis === secondCard.emojis;
+// Check for match - Idea 1
+// function checkMatch(){
+//   var length = emojis.length;
+//     if(length === 2){
+//         if(emojis[0].emoji === emojis[1].emoji){
+//             matched();
+//         } else {
+//             unmatched();
+//         }
+//     }
+// }
 
-  isMatch ? disableCards() : unflipCards();
+// Check for match - Idea 2
+function checkMatch() {
+  this.classList.add("selected");
+  if (selectedCard) {
+    const won = isMatch(selectedCard, this);
+    // should I add an else if statement here for if it doesnt match
+  if (won) {
+    alert("You won the game");
+    showModal(wonDialog);
+    return won;
+  }
 }
 
+return null;
+}
+
+function isMatch(firstCard, secondCard) {
+  if (!firstCard || !secondCard) {}
+  const firstEmoji = firstCard.querySelector(".emojiHTML").innerHTML;
+  const secondEmoji = secondCard.querySelector(".emojiHTML").innerHTML;
+  return firstEmoji === secondEmoji;
+}
+
+cards.forEach((card) => {
+  card.addEventListener("click", checkMatch, {
+    once: true
+  });
+});
+
+//for when cards match
+function matched() {
+  emojis[0].classList.add("match");
+  emojis[1].classList.add("match");
+  emojis[0].classList.remove("selected");
+  emojis[1].classList.remove("selected");
+}
+
+// when cards don't match - Idea 1
+function unmatched() {
+  disable();
+  setTimeout(function() {
+    emojis[0].classList.remove("selected");
+    emojis[1].classList.remove("selected");
+    enable();
+  }, 1000);
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 }
-
 
 //---------- STARS----------//
 // Create a variable for the Stars
 const stars = document.querySelector("ul.stars li");
+
+function hideStar() {
+  const starList = document.querySelectorAll('.stars li');
+  for (star of starList) {
+    if (star.style.display !== 'none'); {
+      star.style.display = 'none';
+      break;
+    }
+  }
+}
+
+
+// CLOCK
+
+const gameTimer = document.querySelector(".timer");
+let liveTimer,
+seconds = 0;
+gameTimer.innerHTML = seconds + " Seconds";
+
+
+function startTimer() {
+    liveTimer = setInterval(function() {
+        seconds++;
+        gameTimer.innerHTML = seconds + 's';
+    }, 1000);
+  }
+
+
+
+
+
+
 
 
 //---------- RESET----------//
 // Create a variable for the Reset Button
 const reset = document.querySelector(".fa-repeat");
 
+// Make it so that when .fa-repeat is clicked in initiates the resetGame function
+
+function resetGame(){
+    // Reset the cards in the deck
+
+
+    // Reset moves
+    moves = 0;
+    movesContainer.innerHTML = moves;
+
+    // Reset star rating
+
+
+  }
+
+
+
+
 
 //---------- MOVES----------//
 function addMoves() {
-    moves++;
-    const movesText = document.querySelector('.moves');
-    movesText.innerHTML = moves;
+  moves++;
+  const movesText = document.querySelector('.moves');
+  movesText.innerHTML = moves;
 }
 
 //---------- END GAME----------//
 // function endGame () {}
 
-
 // Show Modal Box on Completion
-// if (gameEnd) {
-//     var message =
-//     $('#alertModal').find('.modal-body p').text(message);
-//     $('#alertModal').modal('show')
+function showModal(dialog) {
+  // add the open attribute
+  dialog.setAttribute("open", true);
+  return dialog.showModal();
+}
+
+function giveModalResults() {
+  const timeResult = document.querySelector('.time-results');
+  const movesResult = document.querySelector('.moves-results');
+  const gradeResult = document.querySelector('grade-results');
+
+  timeResult.innerHTML = `Time = ${clockTime}`;
+  movesResult.innerHTML = `Moves = ${moves}`;
+  gradeResult.innerHTML = `Stars = ${stars}`;
+}
