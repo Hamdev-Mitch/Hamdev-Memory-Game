@@ -122,20 +122,32 @@ function shuffle(array) {
 //---------- STARS----------//
 // Create a variable for the Stars
 const stars = document.querySelector("ul.stars li");
+// Start with 5 stars in the html
 
+// Perfect score is 16 moves
+// Remove a star every 5 moves
+// Excellent Score is 20 - 4 stars
+// 3 stars = 25
+// 2 stars = 30 moves
+// 1 star = 35
+// 0 star = 40 moves or more
 function hideStar() {
-  const starList = document.querySelectorAll('.stars li');
-  for (star of starList) {
-    if (star.style.display !== 'none'); {
-      star.style.display = 'none';
-      break;
-    }
-  }
+  const starList = document.querySelectorAll('.stars');
+  if( moves < 20) {
+    starsContainer.innerHTML = star + star + star + star + star;
+} else if( moves < 25) {
+    starsContainer.innerHTML = star + star + star + star;
+} else if( moves < 30) {
+    starsContainer.innerHTML = star + star + star;
+} else if( moves < 35) {
+    starsContainer.innerHTML = star + star;
+} else {
+    starsContainer.innerHTML = star;
 }
+  }
 
 
 // CLOCK
-
 const gameTimer = document.querySelector(".timer");
 let liveTimer,
 seconds = 0;
@@ -148,12 +160,6 @@ function startTimer() {
         gameTimer.innerHTML = seconds + 's';
     }, 1000);
   }
-
-
-
-
-
-
 
 
 //---------- RESET----------//
