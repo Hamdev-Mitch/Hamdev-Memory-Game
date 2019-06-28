@@ -3,6 +3,8 @@ let selectedCard;
 let moves = 0;
 let clockOff = true;
 let timer = 0;
+let cardsFlipped = 0;
+const maxNumFlips = 2;
 
 //---------- CARDS----------//
 // Create a list that holds all of your cards
@@ -36,11 +38,19 @@ const cards = document.querySelectorAll('.memory-card');
 // Add event listener to each card
 cards.forEach((card) => {
   card.addEventListener("click", function() {
-    // Check if one is already selected
-    // remove this and add once
-    if (this.classList.contains("selected")) return;
-    // If not give it the selected class
-    this.classList.add("selected")
+
+    if (cardsFlipped >= maxNumFlips) {
+
+    } else {
+      // Check if one is already selected
+      // remove this and add once
+      if (this.classList.contains("selected")) return;
+      // If not give it the selected class
+      this.classList.add("selected")
+      cardsFlipped++;
+      console.log(cardsFlipped);
+    }
+    console.log(cardsFlipped);
   });
 })
 
@@ -62,16 +72,19 @@ cards.forEach((card) => {
 function checkMatch() {
   this.classList.add("selected");
   if (selectedCard) {
+
+    // remove selected if they don't match
+
     const won = isMatch(selectedCard, this);
     // should I add an else if statement here for if it doesnt match
-  if (won) {
-    alert("You won the game");
-    showModal(wonDialog);
-    return won;
+    if (won) {
+      alert("You won the game");
+      showModal(wonDialog);
+      return won;
+    }
   }
-}
 
-return null;
+  return null;
 }
 
 function isMatch(firstCard, secondCard) {
@@ -121,45 +134,40 @@ function shuffle(array) {
 
 //---------- STARS----------//
 // Create a variable for the Stars
-const stars = document.querySelector("ul.stars li");
-// Start with 5 stars in the html
 
-// Perfect score is 16 moves
-// Remove a star every 5 moves
-// Excellent Score is 20 - 4 stars
-// 3 stars = 25
-// 2 stars = 30 moves
-// 1 star = 35
-// 0 star = 40 moves or more
-function hideStar() {
+function rating() {
   const starList = document.querySelectorAll('.stars');
-  if( moves < 20) {
+  // 4 stars = 20 moves
+  if (moves < 20) {
     starsContainer.innerHTML = star + star + star + star + star;
-} else if( moves < 25) {
+    // 3 stars = 25
+  } else if (moves < 25) {
     starsContainer.innerHTML = star + star + star + star;
-} else if( moves < 30) {
+    // 2 stars = 30 moves
+  } else if (moves < 30) {
     starsContainer.innerHTML = star + star + star;
-} else if( moves < 35) {
+    // 1 star = 35 or more
+  } else if (moves < 35) {
     starsContainer.innerHTML = star + star;
-} else {
+  } else {
     starsContainer.innerHTML = star;
-}
   }
+}
 
 
 // CLOCK
 const gameTimer = document.querySelector(".timer");
 let liveTimer,
-seconds = 0;
+  seconds = 0;
 gameTimer.innerHTML = seconds + " Seconds";
 
 
 function startTimer() {
-    liveTimer = setInterval(function() {
-        seconds++;
-        gameTimer.innerHTML = seconds + 's';
-    }, 1000);
-  }
+  liveTimer = setInterval(function() {
+    seconds++;
+    gameTimer.innerHTML = seconds + 's';
+  }, 1000);
+}
 
 
 //---------- RESET----------//
@@ -168,21 +176,18 @@ const reset = document.querySelector(".fa-repeat");
 
 // Make it so that when .fa-repeat is clicked in initiates the resetGame function
 
-function resetGame(){
-    // Reset the cards in the deck
+function resetGame() {
+  // Reset the cards in the deck
 
 
-    // Reset moves
-    moves = 0;
-    movesContainer.innerHTML = moves;
+  // Reset moves
+  moves = 0;
+  movesContainer.innerHTML = moves;
 
-    // Reset star rating
-
-
-  }
+  // Reset star rating
 
 
-
+}
 
 
 //---------- MOVES----------//
