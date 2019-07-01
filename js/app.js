@@ -57,8 +57,8 @@ cards.forEach((card) => {
 
 
 //---------- MATCH CARDS----------//]
-const firstEmoji = firstCard.querySelector(".emojiHTML").innerHTML
-const secondEmoji = secondCard.querySelector(".emojiHTML").innerHTML;
+const firstEmoji = document.querySelectorAll('li.memory-card.selected')[0].innerHTML
+const secondEmoji = document.querySelectorAll('li.memory-card.selected')[1].innerHTML;
 
 function checkMatch() {
   //click two cards
@@ -69,12 +69,14 @@ function checkMatch() {
     // Add one to the number of matches for win-condition
     numMatches++;
   }
-  // if Card 1 does not equal Card 2 add match class
-  else (firstEmoji != secondEmoji) {
+  // if Card 1 does not equal Card 2 remove match class
+  // else (firstEmoji != secondEmoji) {
     this.classList.remove("selected")
   }
-}
-querySelector('li.memory-card.selected')
+
+checkMatch();
+
+querySelector('li.memory-card.selected')[0]
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -142,30 +144,30 @@ function pad(val) {
   } else {
     return valString;
   }
-}
+// }
 
 
 
 //---------- RESET----------//
 // Create a variable for the Reset Button
-const reset = document.querySelector(".fa-repeat");
+// const reset = document.querySelector(".fa-repeat");
 
 // Make it so that when .fa-repeat is clicked in initiates the resetGame function
 
-function resetGame() {
-    open = [];
-    matched = 0;
-    moves = 0;
-    resetTimer();
-    $(".card").attr("class", "card");
-    updateCards();
-    resetStars();
-  };
+// function resetGame() {
+//     open = [];
+//     matched = 0;
+//     moves = 0;
+//     resetTimer();
+//     $(".card").attr("class", "card");
+//     updateCards();
+//     resetStars();
+//   };
 
 
   // Reset moves
-
-  movesContainer.innerHTML = moves;
+  //
+  // movesContainer.innerHTML = moves;
 
   // Reset star rating
 
