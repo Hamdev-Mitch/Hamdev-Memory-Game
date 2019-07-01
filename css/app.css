@@ -63,9 +63,9 @@ a {
   padding-right: 10px;
 }
 
-.score-panel .time {
+/* .score-panel .time {
   padding-left: 30px;
-}
+} */
 
 .score-panel .restart {
   padding-left: 30px;
@@ -130,6 +130,7 @@ main, header[role=banner]{
   cursor: default;
   background: #eeeeee;
   font-size: 33px;
+  opacity: 1;
 }
 
 .memory-card .card-emoji {

@@ -1,10 +1,11 @@
-// block scope local variables
+
 let selectedCard;
 let moves = 0;
 let clockOff = true;
 let timer = 0;
 let cardsFlipped = 0;
 const maxNumFlips = 2;
+var numMatches = 0;
 
 //---------- CARDS----------//
 // Create a list that holds all of your cards
@@ -38,9 +39,7 @@ const cards = document.querySelectorAll('.memory-card');
 // Add event listener to each card
 cards.forEach((card) => {
   card.addEventListener("click", function() {
-
     if (cardsFlipped >= maxNumFlips) {
-
     } else {
       // Check if one is already selected
       // remove this and add once
@@ -48,57 +47,34 @@ cards.forEach((card) => {
       // If not give it the selected class
       this.classList.add("selected")
       cardsFlipped++;
-      console.log(cardsFlipped);
     }
-    console.log(cardsFlipped);
   });
 })
 
-//---------- MATCH CARDS----------//
+// If one card is clicked, start timer
 
-// Check for match - Idea 1
-// function checkMatch(){
-//   var length = emojis.length;
-//     if(length === 2){
-//         if(emojis[0].emoji === emojis[1].emoji){
-//             matched();
-//         } else {
-//             unmatched();
-//         }
-//     }
-// }
+// Every time a move is made add a move to the move counter
 
 
-function isMatch(firstCard, secondCard) {
-  if (!firstCard || !secondCard) {}
-  const firstEmoji = firstCard.querySelector(".emojiHTML").innerHTML;
-  const secondEmoji = secondCard.querySelector(".emojiHTML").innerHTML;
-  return firstEmoji === secondEmoji;
+//---------- MATCH CARDS----------//]
+const firstEmoji = firstCard.querySelector(".emojiHTML").innerHTML
+const secondEmoji = secondCard.querySelector(".emojiHTML").innerHTML;
+
+function checkMatch() {
+  //click two cards
+  // if Card 1 equals Card 2 add match class
+  if (firstEmoji == secondEmoji) {
+    this.classList.add("match")
+    this.classList.remove("selected")
+    // Add one to the number of matches for win-condition
+    numMatches++;
+  }
+  // if Card 1 does not equal Card 2 add match class
+  else (firstEmoji != secondEmoji) {
+    this.classList.remove("selected")
+  }
 }
-
-cards.forEach((card) => {
-  card.addEventListener("click", checkMatch, {
-    once: true
-  });
-});
-
-//for when cards match
-function matched() {
-  emojis[0].classList.add("match");
-  emojis[1].classList.add("match");
-  emojis[0].classList.remove("selected");
-  emojis[1].classList.remove("selected");
-}
-
-// when cards don't match - Idea 1
-function unmatched() {
-  disable();
-  setTimeout(function() {
-    emojis[0].classList.remove("selected");
-    emojis[1].classList.remove("selected");
-    enable();
-  }, 1000);
-}
+querySelector('li.memory-card.selected')
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -113,6 +89,15 @@ function shuffle(array) {
     array[randomIndex] = temporaryValue;
   }
 }
+
+// Win Condition
+function winGame(){
+  if (numMatches == 8)
+  {showModal(dialog);}
+else {
+  return; }
+}
+
 
 //---------- STARS----------//
 // Create a variable for the Stars
@@ -138,18 +123,27 @@ function rating() {
 
 
 // CLOCK
-const gameTimer = document.querySelector(".timer");
-let liveTimer,
-  seconds = 0;
-gameTimer.innerHTML = seconds + " Seconds";
+// Source: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+setInterval(setTime, 1000);
 
-
-function startTimer() {
-  liveTimer = setInterval(function() {
-    seconds++;
-    gameTimer.innerHTML = seconds + 's';
-  }, 1000);
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
 }
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
 
 
 //---------- RESET----------//
@@ -159,11 +153,18 @@ const reset = document.querySelector(".fa-repeat");
 // Make it so that when .fa-repeat is clicked in initiates the resetGame function
 
 function resetGame() {
-  // Reset the cards in the deck
+    open = [];
+    matched = 0;
+    moves = 0;
+    resetTimer();
+    $(".card").attr("class", "card");
+    updateCards();
+    resetStars();
+  };
 
 
   // Reset moves
-  moves = 0;
+
   movesContainer.innerHTML = moves;
 
   // Reset star rating
