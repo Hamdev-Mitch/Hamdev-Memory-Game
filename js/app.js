@@ -1,5 +1,5 @@
+// block scope local variables
 let selectedCard;
-
 let moves = 0;
 let clockOff = true;
 let timer = 0;
@@ -68,24 +68,6 @@ cards.forEach((card) => {
 //     }
 // }
 
-// Check for match - Idea 2
-function checkMatch() {
-  this.classList.add("selected");
-  if (selectedCard) {
-
-    // remove selected if they don't match
-
-    const won = isMatch(selectedCard, this);
-    // should I add an else if statement here for if it doesnt match
-    if (won) {
-      alert("You won the game");
-      showModal(wonDialog);
-      return won;
-    }
-  }
-
-  return null;
-}
 
 function isMatch(firstCard, secondCard) {
   if (!firstCard || !secondCard) {}
