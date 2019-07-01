@@ -39,7 +39,10 @@ const cards = document.querySelectorAll('.memory-card');
 // Add event listener to each card
 cards.forEach((card) => {
   card.addEventListener("click", function() {
+    console.log(cardsFlipped);
     if (cardsFlipped >= maxNumFlips) {
+      checkMatch();
+      cardsFlipped = 0;
     } else {
       // Check if one is already selected
       // remove this and add once
@@ -57,27 +60,28 @@ cards.forEach((card) => {
 
 
 //---------- MATCH CARDS----------//]
-const firstEmoji = document.querySelectorAll('li.memory-card.selected')[0].innerHTML
-const secondEmoji = document.querySelectorAll('li.memory-card.selected')[1].innerHTML;
 
 function checkMatch() {
-  //click two cards
-  // if Card 1 equals Card 2 add match class
+  const firstEmoji = document.querySelectorAll('li.memory-card.selected .card-emoji')[0].innerHTML;
+  const secondEmoji = document.querySelectorAll('li.memory-card.selected .card-emoji')[1].innerHTML;
+  const firstMemoryCard = document.querySelectorAll('li.memory-card.selected')[0];
+  const secondMemoryCard =document.querySelectorAll('li.memory-card.selected')[1];
+console.log(firstEmoji == secondEmoji);
+// Target cards and add a class to them
   if (firstEmoji == secondEmoji) {
-    this.classList.add("match")
-    this.classList.remove("selected")
+    firstMemoryCard.classList.add("match")
+    firstMemoryCard.classList.remove("selected")
+    secondMemoryCard.classList.add("match")
+    secondMemoryCard.classList.remove("selected")
     // Add one to the number of matches for win-condition
     numMatches++;
   }
   // if Card 1 does not equal Card 2 remove match class
-  // else (firstEmoji != secondEmoji) {
-    this.classList.remove("selected")
+  else if (firstEmoji != secondEmoji){
+    firstMemoryCard.classList.remove("selected")
+    secondMemoryCard.classList.remove("selected")
   }
-
-checkMatch();
-
-querySelector('li.memory-card.selected')[0]
-
+}
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
   var currentIndex = array.length,
