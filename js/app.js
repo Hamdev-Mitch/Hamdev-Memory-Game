@@ -1,4 +1,3 @@
-
 let selectedCard;
 let moves = 0;
 let clockOff = true;
@@ -6,47 +5,42 @@ let timer = 0;
 let cardsFlipped = 0;
 const maxNumFlips = 2;
 var numMatches = 0;
-
-//---------- CARDS----------//
-// Create a list that holds all of your cards
-const cardTemplate = (emoji) => `<li class="memory-card"><span class="card-emoji">${emoji}</span></li>`;
-
-// Store cards in array
-const emojis = ["😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝"];
-
-//---------- CREATE + FILL DECK----------//
-
-// Create a deck to store the cards in
+const movesTxt = document.querySelector('.moves-text');
+const movesCount = document.querySelector('.moves');
 const deck = document.querySelector(".deck");
+const cardTemplate = (emoji) => `<li class="memory-card"><span class="card-emoji">${emoji}</span></li>`;
+const emojis = ["😂", "😄", "😊", "😉", "😋", "😍", "😘", "😝"];
+const starsContainer = document.querySelectorAll('.stars');
+const star =
 
-// Shuffle array once
-shuffle(emojis);
+  //---------- MAIN GAME LOGIC----------//
 
+  // Shuffle array once
+  shuffle(emojis);
 //call cards with map, pass in each card, turn it into html string
 var emojiHTML = emojis.map((emoji) => cardTemplate(emoji)).join("");
 console.log(emojiHTML);
-
 // Shuffle array a second time
 shuffle(emojis);
-
 // Pass in the array of emojis again
 emojiHTML = emojiHTML + emojis.map((emoji) => cardTemplate(emoji)).join("");
 console.log(emojiHTML);
-
 //add the html back in programmatically use innerHTML Property.
 deck.innerHTML = emojiHTML;
+
 const cards = document.querySelectorAll('.memory-card');
+
 // Add event listener to each card
 cards.forEach((card) => {
   card.addEventListener("click", function() {
-    console.log(cardsFlipped);
+    // Make sure that only two cards can be flipped at once
     if (cardsFlipped >= maxNumFlips) {
       checkMatch();
       cardsFlipped = 0;
     } else {
       // Check if one is already selected
       // remove this and add once
-      if (this.classList.contains("selected")) return;
+      if (this.classList.contains("selected")) return null;
       // If not give it the selected class
       this.classList.add("selected")
       cardsFlipped++;
@@ -59,15 +53,16 @@ cards.forEach((card) => {
 // Every time a move is made add a move to the move counter
 
 
-//---------- MATCH CARDS----------//]
+//---------- MATCH CARDS----------//
 
 function checkMatch() {
+  addMoves();
   const firstEmoji = document.querySelectorAll('li.memory-card.selected .card-emoji')[0].innerHTML;
   const secondEmoji = document.querySelectorAll('li.memory-card.selected .card-emoji')[1].innerHTML;
   const firstMemoryCard = document.querySelectorAll('li.memory-card.selected')[0];
-  const secondMemoryCard =document.querySelectorAll('li.memory-card.selected')[1];
-console.log(firstEmoji == secondEmoji);
-// Target cards and add a class to them
+  const secondMemoryCard = document.querySelectorAll('li.memory-card.selected')[1];
+  console.log(firstEmoji == secondEmoji);
+  // Target cards and add a class to them
   if (firstEmoji == secondEmoji) {
     firstMemoryCard.classList.add("match")
     firstMemoryCard.classList.remove("selected")
@@ -75,9 +70,10 @@ console.log(firstEmoji == secondEmoji);
     secondMemoryCard.classList.remove("selected")
     // Add one to the number of matches for win-condition
     numMatches++;
+    console.log(numMatches);
   }
   // if Card 1 does not equal Card 2 remove match class
-  else if (firstEmoji != secondEmoji){
+  else if (firstEmoji != secondEmoji) {
     firstMemoryCard.classList.remove("selected")
     secondMemoryCard.classList.remove("selected")
   }
@@ -97,39 +93,65 @@ function shuffle(array) {
 }
 
 // Win Condition
-function winGame(){
-  if (numMatches == 8)
-  {showModal(dialog);}
-else {
-  return; }
+function winGame() {
+  const modalBox = querySelector('#alertModal.modal-content');
+  if (numMatches >= 8) {
+    myStopFunction();
+    stopCount();
+    modalBox.classList.add("showModal");
+  }
 }
 
+function myStopFunction() {
+  clearInterval(sec);
+}
+
+function stopCount() {
+  clearInterval(moves);
+}
+
+function restartGame() {
+  closeModal();
+  resetScore();
+  resetDeck();
+}
 
 //---------- STARS----------//
 // Create a variable for the Stars
 
 function rating() {
-  const starList = document.querySelectorAll('.stars');
-  // 4 stars = 20 moves
-  if (moves < 20) {
-    starsContainer.innerHTML = star + star + star + star + star;
-    // 3 stars = 25
-  } else if (moves < 25) {
-    starsContainer.innerHTML = star + star + star + star;
-    // 2 stars = 30 moves
-  } else if (moves < 30) {
-    starsContainer.innerHTML = star + star + star;
-    // 1 star = 35 or more
-  } else if (moves < 35) {
-    starsContainer.innerHTML = star + star;
-  } else {
-    starsContainer.innerHTML = star;
-  }
+  // const starList = document.querySelectorAll('.stars');
+  // // 4 stars = 20 moves
+  // const star = document.querySelector('.stars fa-star');
+  // if (moves <= 20) {
+  //   starList.removeChild();
+  //   // 3 stars = 25
+  // } else if (moves >= 25 && moves <= 30) {
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   // 2 stars = 30 moves
+  // } else if (moves >= 30 && moves <= 35) {
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   // 1 star = 35 or more
+  // } else if (moves >= 35 && moves <= 40) {
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   starList.removeChild();
+  // } else {
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   starList.removeChild();
+  //   starList.removeChild();
+  // }
 }
 
-
 // CLOCK
-// Source: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+
+// Timer
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
@@ -148,60 +170,31 @@ function pad(val) {
   } else {
     return valString;
   }
-// }
-
-
-
-//---------- RESET----------//
-// Create a variable for the Reset Button
-// const reset = document.querySelector(".fa-repeat");
-
-// Make it so that when .fa-repeat is clicked in initiates the resetGame function
-
-// function resetGame() {
-//     open = [];
-//     matched = 0;
-//     moves = 0;
-//     resetTimer();
-//     $(".card").attr("class", "card");
-//     updateCards();
-//     resetStars();
-//   };
-
-
-  // Reset moves
-  //
-  // movesContainer.innerHTML = moves;
-
-  // Reset star rating
-
-
 }
-
 
 //---------- MOVES----------//
 function addMoves() {
   moves++;
-  const movesText = document.querySelector('.moves');
-  movesText.innerHTML = moves;
+  movesCount.textContent = moves;
 }
 
+
 //---------- END GAME----------//
+
+
 // function endGame () {}
 
 // Show Modal Box on Completion
-function showModal(dialog) {
-  // add the open attribute
-  dialog.setAttribute("open", true);
-  return dialog.showModal();
-}
 
 function giveModalResults() {
   const timeResult = document.querySelector('.time-results');
   const movesResult = document.querySelector('.moves-results');
   const gradeResult = document.querySelector('grade-results');
-
   timeResult.innerHTML = `Time = ${clockTime}`;
   movesResult.innerHTML = `Moves = ${moves}`;
   gradeResult.innerHTML = `Stars = ${stars}`;
+}
+
+function closeModal() {
+  modal.style.display = 'none';
 }

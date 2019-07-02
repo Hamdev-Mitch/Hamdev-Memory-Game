@@ -28,7 +28,7 @@
         <li><i class="fa fa-star"></i></li>
       </ul>
 
-      <span class="moves">3</span> Moves
+      <span class="moves">0</span> Moves
       <label id="minutes">00</label>:<label id="seconds">00</label>
       <span class="restart"><i class="fa fa-repeat"></i>
 
@@ -44,13 +44,13 @@
   </main>
 
   <!-- Make a box that appears when the player completes the game -->
-  <div id="alertModal" class="modal fade">
+  <div class id="alertModal" class="modal" style="display:block;">
     <div class="modal-content text-center">
       <div class="modal-header">
         <h1>Congratulations!</h1>
-        <h6>Game Results</h6>
       </div>
       <div class="modal-body">
+      <h6>You've completed the game, here are your results.</h6>
       <p><strong>TIME:</strong> <span id="time-results"></span></p>
       <p><strong>MOVES:</strong> <span id="moves-results"></p>
       <p><strong>STARS:</strong> <span id="grade-results"></p>

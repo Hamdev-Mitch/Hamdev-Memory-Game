@@ -127,10 +127,9 @@ main, header[role=banner]{
   opacity: 1;
 }
 
-.memory-card.match {
+.memory-card .match {
   cursor: default;
   background: #eeeeee;
-  font-size: 33px;
   opacity: 1;
 }
 
@@ -154,7 +153,7 @@ main, header[role=banner]{
 
 /* GAME MODAL */
 
-#alertModal {
+.modalContent {
   display: none;
   box-sizing: border-box;
   background: linear-gradient(160deg, #eeeeee 5%, #d55931 12%, #222831 18%, #3f4652 50%, #222831 82%, #d55931 88%,  #eeeeee 95%);
@@ -166,6 +165,11 @@ main, header[role=banner]{
   padding-top: 1px;
   padding-bottom: 1px;
   font-size: 1.2rem;
+}
+
+.showModal {
+  opacity: 1;
+  display: block;
 }
 
 .github-link {
