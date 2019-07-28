@@ -15,8 +15,8 @@ const star =
 
   //---------- MAIN GAME LOGIC----------//
 
-  // Shuffle array once
-  shuffle(emojis);
+// Shuffle array once
+shuffle(emojis);
 //call cards with map, pass in each card, turn it into html string
 var emojiHTML = emojis.map((emoji) => cardTemplate(emoji)).join("");
 console.log(emojiHTML);
@@ -48,13 +48,9 @@ cards.forEach((card) => {
   });
 })
 
-// If one card is clicked, start timer
-
 // Every time a move is made add a move to the move counter
 
-
 //---------- MATCH CARDS----------//
-
 function checkMatch() {
   addMoves();
   const firstEmoji = document.querySelectorAll('li.memory-card.selected .card-emoji')[0].innerHTML;
@@ -78,6 +74,7 @@ function checkMatch() {
     secondMemoryCard.classList.remove("selected")
   }
 }
+//---------- SHUFFLE ----------//
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
   var currentIndex = array.length,
@@ -92,13 +89,19 @@ function shuffle(array) {
   }
 }
 
-// Win Condition
+// ---------- Win Condition ---------- //
 function winGame() {
   const modalBox = querySelector('#alertModal.modal-content');
   if (numMatches >= 8) {
     myStopFunction();
     stopCount();
     modalBox.classList.add("showModal");
+  }
+}
+
+function checkWinCondition(){
+  if (numMatches >= 8){
+    winGame();
   }
 }
 
@@ -111,14 +114,26 @@ function stopCount() {
 }
 
 function restartGame() {
+  // reset all emojis
+  querySelectorAll("memory-card").classList.remove("selected");
+  shuffle(emojis);
+  shuffle(emojis);
+
+  // close the modal
   closeModal();
+
+  // reset the score
   resetScore();
+
+  // reset the deck
   resetDeck();
 }
 
-//---------- STARS----------//
-// Create a variable for the Stars
 
+
+//----------STARS----------//
+
+// Create a variable for the Stars
 function rating() {
   // const starList = document.querySelectorAll('.stars');
   // // 4 stars = 20 moves
@@ -149,7 +164,7 @@ function rating() {
   // }
 }
 
-// CLOCK
+//----------TIMER----------//
 
 // Timer
 var minutesLabel = document.getElementById("minutes");
@@ -182,10 +197,11 @@ function addMoves() {
 //---------- END GAME----------//
 
 
+
+//---------- MODAL ---------//
 // function endGame () {}
 
 // Show Modal Box on Completion
-
 function giveModalResults() {
   const timeResult = document.querySelector('.time-results');
   const movesResult = document.querySelector('.moves-results');
@@ -198,3 +214,11 @@ function giveModalResults() {
 function closeModal() {
   modal.style.display = 'none';
 }
+
+
+// When the user clicks on the button, close the modal
+var modalCloseBtn = document.getElementById("modalCloseButton");
+modalCloseBtn.onclick = function(){
+  modal.style.display="none";
+  modal.style.visibility="hidden";
+};
