@@ -15,8 +15,8 @@ const star =
 
   //---------- MAIN GAME LOGIC----------//
 
-// Shuffle array once
-shuffle(emojis);
+  // Shuffle array once
+  shuffle(emojis);
 //call cards with map, pass in each card, turn it into html string
 var emojiHTML = emojis.map((emoji) => cardTemplate(emoji)).join("");
 console.log(emojiHTML);
@@ -66,6 +66,8 @@ function checkMatch() {
     secondMemoryCard.classList.remove("selected")
     // Add one to the number of matches for win-condition
     numMatches++;
+    checkWinCondition();
+    // rating();
     console.log(numMatches);
   }
   // if Card 1 does not equal Card 2 remove match class
@@ -91,22 +93,23 @@ function shuffle(array) {
 
 // ---------- Win Condition ---------- //
 function winGame() {
-  const modalBox = querySelector('#alertModal.modal-content');
+  const modalBox = document.querySelector('.congrats');
   if (numMatches >= 8) {
     myStopFunction();
     stopCount();
-    modalBox.classList.add("showModal");
+    modalBox.style.display="block";
+    giveModalResults();
   }
 }
 
-function checkWinCondition(){
-  if (numMatches >= 8){
+function checkWinCondition() {
+  if (numMatches >= 8) {
     winGame();
   }
 }
 
 function myStopFunction() {
-  clearInterval(sec);
+
 }
 
 function stopCount() {
@@ -132,36 +135,25 @@ function restartGame() {
 
 
 //----------STARS----------//
-
 // Create a variable for the Stars
 function rating() {
-  // const starList = document.querySelectorAll('.stars');
-  // // 4 stars = 20 moves
-  // const star = document.querySelector('.stars fa-star');
-  // if (moves <= 20) {
-  //   starList.removeChild();
-  //   // 3 stars = 25
-  // } else if (moves >= 25 && moves <= 30) {
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   // 2 stars = 30 moves
-  // } else if (moves >= 30 && moves <= 35) {
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   // 1 star = 35 or more
-  // } else if (moves >= 35 && moves <= 40) {
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   starList.removeChild();
-  // } else {
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   starList.removeChild();
-  //   starList.removeChild();
-  // }
+  const starList = document.querySelectorAll('.stars');
+  // 4 stars = 20 moves
+  const star = document.querySelector('.stars fa-star');
+  if (moves <= 20) {
+    starList.removeChild[4];
+    // 3 stars = 25
+  } else if (moves >= 25 && moves <= 30) {
+    starList.removeChild[3];
+    // 2 stars = 30 moves
+  } else if (moves >= 30 && moves <= 35) {
+    starList.removeChild[2];
+    // 1 star = 35 or more
+  } else if (moves >= 35 && moves <= 40) {
+    starList.removeChild[1];
+  } else {
+    starList.removeChild[0];
+  }
 }
 
 //----------TIMER----------//
@@ -203,12 +195,12 @@ function addMoves() {
 
 // Show Modal Box on Completion
 function giveModalResults() {
-  const timeResult = document.querySelector('.time-results');
-  const movesResult = document.querySelector('.moves-results');
-  const gradeResult = document.querySelector('grade-results');
-  timeResult.innerHTML = `Time = ${clockTime}`;
-  movesResult.innerHTML = `Moves = ${moves}`;
-  gradeResult.innerHTML = `Stars = ${stars}`;
+  const timeResult = document.querySelector('#time-results');
+  const movesResult = document.querySelector('#moves-results');
+  const gradeResult = document.querySelector('#grade-results');
+  timeResult.innerHTML = `${totalSeconds} seconds`;
+  movesResult.innerHTML = `${moves}`;
+  gradeResult.innerHTML = `${starList}`;
 }
 
 function closeModal() {
@@ -218,7 +210,7 @@ function closeModal() {
 
 // When the user clicks on the button, close the modal
 var modalCloseBtn = document.getElementById("modalCloseButton");
-modalCloseBtn.onclick = function(){
-  modal.style.display="none";
-  modal.style.visibility="hidden";
+modalCloseBtn.onclick = function() {
+  modal.style.display = "none";
+  modal.style.visibility = "hidden";
 };

@@ -154,13 +154,12 @@ main, header[role=banner]{
 /* GAME MODAL */
 
 .modalContent {
-  display: none;
+  /* display: none; */
   position: fixed;
   box-sizing: border-box;
-  background: linear-gradient(160deg, #eeeeee 5%, #d55931 12%, #222831 18%, #3f4652 50%, #222831 82%, #d55931 88%,  #eeeeee 95%);
+  background: black;
   border-radius: 0 30px;
   width: 800px;
-  text-align: center;
   color: #eeeeee;
   font-family: 'Orbitron', sans-serif;
   padding-top: 1px;
@@ -171,6 +170,7 @@ main, header[role=banner]{
 .showModal {
   opacity: 1;
   display: block;
+
 }
 
 .github-link {
@@ -178,4 +178,8 @@ main, header[role=banner]{
   color: #eeeeee;
   font-family: 'Orbitron', sans-serif;
   font-size: 1.8rem;
+}
+/* The modal*/
+.congrats {
+  display: none;
 }
